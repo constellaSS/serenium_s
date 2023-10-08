@@ -1,13 +1,13 @@
 import PostContainer from "../../components/PostContainer/PostContainer.jsx";
 import NavBar from "../../components/NavBar/NavBar.jsx";
 import './Home.css'
-import Header from "../../components/header/Header.jsx";
+import Header from "../../components/Header/Header.jsx";
 
 const Home = () => {
 	return(
 		<>
-			<Header/>
 			<div className='homeScreen'>
+				<Header/>
 				<PostContainer/>
 				<NavBar />
 			</div>
