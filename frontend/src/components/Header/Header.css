@@ -1,5 +1,6 @@
 .headerContainer{
     position: fixed;
+    top:0;
     display: flex;
     width: 100%;
 
