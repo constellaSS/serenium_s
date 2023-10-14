@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@capacitor/core": "^5.4.2",
+    "@project-serum/anchor": "^0.26.0",
     "framer-motion": "^10.16.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

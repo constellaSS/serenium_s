@@ -1,0 +1,98 @@
+{
+  "version": "0.1.0",
+  "name": "serenium_s",
+  "instructions": [
+    {
+      "name": "initThread",
+      "accounts": [
+        {
+          "name": "thread",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "owner",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "threadType",
+          "type": "string"
+        },
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "content",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Reply",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "replyOwner",
+            "type": "publicKey"
+          },
+          {
+            "name": "content",
+            "type": "string"
+          },
+          {
+            "name": "numberOfLikes",
+            "type": "u128"
+          },
+          {
+            "name": "numberOfReports",
+            "type": "u128"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Thread",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "threadType",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "content",
+            "type": "string"
+          },
+          {
+            "name": "replies",
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "name": "distributedTokens",
+            "type": "u128"
+          }
+        ]
+      }
+    }
+  ]
+}
