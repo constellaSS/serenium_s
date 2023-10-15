@@ -1,4 +1,3 @@
-import Home from "./pages/Home/Home.jsx";
 import "./App.css";
 import './normalize.css';
 import {useEffect, useState} from "react";
@@ -55,29 +54,29 @@ function App() {
             const provider = getProvider();
             const program = new Program(idl, programID, provider);
             const [thread] = await PublicKey.findProgramAddress(
-                [
-                    utils.bytes.utf8.encode("THREAD_DEMO"),
-                    provider.wallet.publicKey.toBuffer()
-                ],
-                program.programId
+              [
+                  utils.bytes.utf8.encode("THREAD_DEMO"),
+                  provider.wallet.publicKey.toBuffer()
+              ],
+              program.programId
             );
-            await program.rpc.create('thread type','thread name', 'thread content', {
+            await program.rpc.initThread('thread type', 'thread title', 'thread content', {
                 accounts: {
                     thread,
                     owner: provider.wallet.publicKey,
                     systemProgram: SystemProgram.programId
                 }
             })
-            console.log('Created a new thread with address:', thread.toString());
+            console.log('Created a new thread with address:', thread);
         } catch(err) {
             console.error('Error creating thread account:', err);
         }
     }
     const renderNotConnectedContainer = () => (
-        <button onClick={connectWallet}>Connect to Wallet</button>
+      <button onClick={connectWallet}>Connect to Wallet</button>
     );
     const renderConnectedContainer = () => (
-        <button onClick={createThread}>Submit post</button>
+      <button onClick={createThread}>Submit post</button>
     );
     useEffect(() => {
         const onLoad = async() => {
@@ -87,13 +86,13 @@ function App() {
         return () => window.removeEventListener("load", onLoad)
     }, []);
 
-  return (
-    <div className="rootContainer">
-        {!walletAddress && renderNotConnectedContainer()}
-        {walletAddress && renderConnectedContainer()}
-        {/*<Home/>*/}
-    </div>
-  )
+    return (
+      <div className="rootContainer">
+          {!walletAddress && renderNotConnectedContainer()}
+          {walletAddress && renderConnectedContainer()}
+          {/*<Home/>*/}
+      </div>
+    )
 }
 
 export default App

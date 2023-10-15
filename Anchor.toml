@@ -3,7 +3,7 @@ seeds = false
 skip-lint = false
 
 [programs.localnet]
-serenium_s = "7tGHjvmtx3dSXXjHqDQvPES4P1wGrmywXcQxKke4ihnT"
+serenium_s = "2PiwqNRwRYhhKuqkSf6XtcZ6vo2pMFRKMBSQfYkDyffi"
 
 [registry]
 url = "https://api.apr.dev"

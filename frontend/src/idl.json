@@ -35,9 +35,74 @@
           "type": "string"
         }
       ]
+    },
+    {
+      "name": "addReply",
+      "accounts": [
+        {
+          "name": "thread",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "signer",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "replyOwner",
+          "type": "publicKey"
+        },
+        {
+          "name": "content",
+          "type": "string"
+        }
+      ]
     }
   ],
   "accounts": [
+    {
+      "name": "Thread",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "threadType",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "content",
+            "type": "string"
+          },
+          {
+            "name": "replies",
+            "type": {
+              "vec": {
+                "defined": "Reply"
+              }
+            }
+          },
+          {
+            "name": "state",
+            "type": {
+              "defined": "ThreadState"
+            }
+          },
+          {
+            "name": "distributedTokens",
+            "type": "u128"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
     {
       "name": "Reply",
       "type": {
@@ -63,36 +128,21 @@
       }
     },
     {
-      "name": "Thread",
+      "name": "ThreadState",
       "type": {
-        "kind": "struct",
-        "fields": [
+        "kind": "enum",
+        "variants": [
           {
-            "name": "threadType",
-            "type": "string"
+            "name": "Active"
           },
           {
-            "name": "title",
-            "type": "string"
-          },
-          {
-            "name": "content",
-            "type": "string"
-          },
-          {
-            "name": "replies",
-            "type": "string"
-          },
-          {
-            "name": "state",
-            "type": "string"
-          },
-          {
-            "name": "distributedTokens",
-            "type": "u128"
+            "name": "Expired"
           }
         ]
       }
     }
-  ]
+  ],
+  "metadata": {
+    "address": "2PiwqNRwRYhhKuqkSf6XtcZ6vo2pMFRKMBSQfYkDyffi"
+  }
 }

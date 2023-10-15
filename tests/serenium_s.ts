@@ -1,30 +1,24 @@
-import * as anchor from "@coral-xyz/anchor";
-import { Program } from "@coral-xyz/anchor";
-import { SereniumS } from "../target/types/serenium_s";
-
 const assert = require('assert');
-// @ts-ignore
 const anchor = require('@project-serum/anchor');
+const idl = require('../frontend/src/idl.json')
+const solana = require('@solana/web3.js')
 const { SystemProgram } = anchor.web3;
 
 describe("serenium_s", () => {
-  const provider = anchor.AnchorProvider.local();
+  const provider = anchor.AnchorProvider.env();
   anchor.setProvider(provider);
+  const program = anchor.workspace.SereniumS;
+  const wallet = provider.wallet;
   const thread = anchor.web3.Keypair.generate();
-  const program = anchor.workspace.Serenium_s;
-
   it('Creates a thread', async () => {
-    await program.rpc.create('thread type', 'thread title', 'thread content', {
-      accounts: {
-        thread: thread.publicKey,
-        owner: provider.wallet.publicKey,
-        systemProgram: SystemProgram.programId,
-      },
-      signers: [thread],
-    });
+    await program.methods.initThread('thread type', 'thread title', 'thread content').accounts({
+      thread: thread.publicKey,
+      owner: wallet.publicKey,
+      systemProgram: SystemProgram.programId,
+    }).signers([thread]).rpc();
     const account = await program.account.thread.fetch(
         thread.publicKey
     );
-    assert.ok(account.title == 'thread title');
+    assert.ok(account.title === 'thread title');
   });
 })
