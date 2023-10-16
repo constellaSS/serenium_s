@@ -3,13 +3,13 @@ import NavBar from "../../components/NavBar/NavBar.jsx";
 import './Home.css'
 import Header from "../../components/Header/Header.jsx";
 
-const Home = () => {
+const Home = ({createThread, threads}) => {
 	return(
 		<>
 			<div className='homeScreen'>
 				<Header/>
-				<PostContainer/>
-				<NavBar />
+				<PostContainer threads={threads}/>
+				<NavBar createThread={createThread} />
 			</div>
 		</>
 	)
